@@ -7,5 +7,11 @@ RSpec.describe Api::V1::DecisionsController, type: :controller do
       get :index
       expect(response).to have_http_status(:ok)
     end
+
+    it "returns a 401" do
+      request.headers["API_TOKEN"] = "not_foo"
+      get :index
+      expect(response.status).to eq(401)
+    end
   end
 end

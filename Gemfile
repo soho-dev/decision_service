@@ -8,6 +8,7 @@ end
 gem 'rails', '~> 5.1.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

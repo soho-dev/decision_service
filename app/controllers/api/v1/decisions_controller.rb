@@ -1,5 +1,4 @@
-class Api::V1::DecisionsController < ActionController::API
-  
+class Api::V1::DecisionsController < Api::ApiRestrictController
   def index
     head :ok
   end
