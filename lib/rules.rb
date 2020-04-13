@@ -33,9 +33,11 @@ class Rules
     end
   end
 
-  def process
-    # use report class to make decision
-    decision_from_rule
+  def run
+    @decision_request.create_decision(
+      rule_name: rule_name,
+      decision: decision_from_rule
+    )
   end
 
   def decision_from_rule
