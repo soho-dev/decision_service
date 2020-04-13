@@ -1,1 +1,4 @@
-# base class to fetch reports 
+# base class to fetch reports
+class Reports
+
+end
