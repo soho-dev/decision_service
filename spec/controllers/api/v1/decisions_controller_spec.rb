@@ -24,20 +24,23 @@ RSpec.describe Api::V1::DecisionsController, type: :controller do
     let(:valid_request_data) {
       {
         application_id: 123,
+        first_name: "abba",
+        last_name: "dabba",
+        date_of_birth: "what_ever",
+        ssn: "123456789",
+        email: "aa@aa.com",
+        phone: "1234567890",
+        income: 10000,
+        income_type: "salary",
+        requested_loan_amount: 20000,
         address: {
-          street: "123",
+          street: "123 encounter bay",
+          unit_number: 123,
           city: "test_city",
           zip: "321",
           state: "test_state",
           county: "test_county"
-        },
-        applicant: {
-          first_name: "abba",
-          last_name: "dabba",
-          ssn: "123456789",
-          salary: "10000"
-        },
-        loan_amt: "20000"
+        }
       }
     }
 

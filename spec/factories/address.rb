@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :address do
+    decision_request
+
     street "123 encounter bay"
     city "bay view"
     county "chapara"

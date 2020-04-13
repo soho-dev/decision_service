@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :applicant do
+    decision_request
+    
     first_name "first"
     last_name "last"
     ssn "123456789"
