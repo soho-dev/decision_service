@@ -2,6 +2,6 @@
   "encounter_bay": {
     "total_mortgage_amount": "10000",
     "pending_mortgage_amount": "1000",
-    "regular_in_payment": true
+    "regular_in_payment": "regular"
   }
 }

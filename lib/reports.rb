@@ -1,4 +1,5 @@
 class Reports
+  attr_accessor :decision_request
   def initialize(decision_request)
     @decision_request = decision_request
   end
@@ -16,7 +17,7 @@ class Reports
   private
 
   def call_service
-    service.constantize.call
+    service.constantize.call(request_payload)
   end
 
   def parser_class
@@ -32,6 +33,10 @@ class Reports
   end
 
   def report_class
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+
+  def request_payload
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 end

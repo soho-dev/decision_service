@@ -1,6 +1,9 @@
 require 'reports'
 class Reports::Mortgage < Reports
   protected
+  def request_payload
+    decision_request.address
+  end
 
   def service
     "ReportService::PropertyDataService"
