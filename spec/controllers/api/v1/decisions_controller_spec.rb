@@ -20,10 +20,30 @@ RSpec.describe Api::V1::DecisionsController, type: :controller do
     end
   end
 
-  describe "GET #create" do
+  describe "POST #create" do
+    let(:valid_request_data) {
+      {
+        application_id: 123,
+        address: {
+          street: "123",
+          city: "test_city",
+          zip: "321",
+          state: "test_state",
+          county: "test_county"
+        },
+        applicant: {
+          first_name: "abba",
+          last_name: "dabba",
+          ssn: "123456789",
+          salary: "10000"
+        },
+        loan_amt: "20000"
+      }
+    }
+
     it "returns a 401" do
       request.headers["API_TOKEN"] = "not_foo"
-      get :create
+      post :create, params: valid_request_data
       expect(response.status).to eq(401)
     end
 
@@ -66,12 +86,12 @@ RSpec.describe Api::V1::DecisionsController, type: :controller do
       }
 
       it "returns a 200" do
-        get :create
+        post :create, params: valid_request_data
         expect(response).to have_http_status(:ok)
       end
 
       it "returns decision" do
-        get :create
+        post :create, params: valid_request_data
         expect(response).to eq(decision)
       end
     end

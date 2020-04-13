@@ -8,6 +8,9 @@ class Api::V1::DecisionsController < Api::ApiRestrictController
   end
 
   def create
-    head :ok
+    decision_request = DecisionRequest.new(params)
+    render json: { message: "decision request not valid"}, status: 422 unless DecisionRequest.new(params).valid?
+    decision = Processer.new(decision_request).process
+    render json: decision
   end
 end
