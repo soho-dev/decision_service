@@ -1,5 +1,5 @@
 class Processer
-  RULE_SET= %w(credit_rule mortagage_rule)
+  RULE_SET= %w(credit_rule mortgage_rule)
 
   def process
     # run rules and store result in database

@@ -77,9 +77,9 @@ RSpec.describe Api::V1::DecisionsController, type: :controller do
               reason: "eligible"
             },
             {
-              rule_name: "mortagage_rule",
+              rule_name: "mortgage_rule",
               decision: "decline",
-              reason: "mortagage above threshold of 5"
+              reason: "mortgage above threshold of 5"
             }
           ],
           funding_options: [
