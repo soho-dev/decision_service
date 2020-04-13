@@ -1,4 +1,4 @@
-def RulesConfig
+class RulesConfig
   def initialize(address)
     @addres = address
   end
@@ -11,7 +11,7 @@ def RulesConfig
       },
       mortagage_rule: {
         enabled: true,
-        mortagage_percentage_threshold: 50%
+        mortagage_threshold: 5
       }
     }
   end

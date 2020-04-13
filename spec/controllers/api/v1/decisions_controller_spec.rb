@@ -69,7 +69,19 @@ RSpec.describe Api::V1::DecisionsController, type: :controller do
             salary: "10000"
           },
           loan_amt: "20000",
-          decision: "eligible",
+          final_decision: "eligible",
+          decision: [
+            {
+              rule_name: "credit_rule",
+              decision: "eligible",
+              reason: "eligible"
+            },
+            {
+              rule_name: "mortagage_rule",
+              decision: "decline",
+              reason: "mortagage above threshold of 5"
+            }
+          ],
           funding_options: [
             {
               years: 5,

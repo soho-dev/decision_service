@@ -1,7 +1,3 @@
-# base class for Rule
-# comman logic to get config
-# process method that will run to get the result
-# prepare reports required to check all the reports are present
 class Rules
   def initialize(decision_request, config, reports)
     @decision_request = decision_request
@@ -10,18 +6,18 @@ class Rules
   end
 
   def enabled
-    config[self.rule_name.to_sym][enabled] rescue false
+    # config[self.rule_name.to_sym][enabled] rescue false
   end
 
   def config
-    RulesConfig.new(decision_request.address).values
+    ::RulesConfig.new(decision_request.address).values
   end
 
   def data_present?
   end
 
   def reports_required
-    []
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 
   def reports
@@ -32,8 +28,10 @@ class Rules
 
   def process
     # use report class to make decision
+    decision_from_rule
   end
 
   def decision_from_rule
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 end

@@ -1,3 +1,3 @@
 # store reports in json file
-class ApplicantDataService
+class ReportService::ApplicantDataService
 end

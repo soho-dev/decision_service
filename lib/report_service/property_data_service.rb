@@ -1,3 +1,3 @@
 # store reports in json file
-class PropertyDataService
+class ReportService::PropertyDataService
 end
