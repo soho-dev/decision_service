@@ -7,19 +7,21 @@ class Rules
   def initialize(decision_request, config = nil, reports = nil)
     @decision_request = decision_request
     @config = config || self.config
-    @reports = reports || self.fetch_reports if enabled
+    @reports = reports || (self.fetch_reports if enabled) || []
   end
 
+  attr_reader :decision_request
+
   def enabled
-    config[rule_name.to_sym][:enabled] rescue false
+    config["enabled"] rescue false
   end
 
   def config
-    ::RulesConfig.new(decision_request.address).values
+    ::RulesConfig.new(decision_request.address, rule_name).values
   end
 
   def data_present?
-    @reports.any?
+    @reports.any? rescue false
   end
 
   def reports_required

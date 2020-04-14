@@ -20,6 +20,6 @@ class Rules::CreditRule < Rules
   end
 
   def credit_score_threshold
-    config[rule_name.to_sym][__method__]
+    config[__method__.to_s]
   end
 end

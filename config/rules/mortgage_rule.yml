@@ -1,0 +1,50 @@
+California:
+  enabled: true,
+  mortgage_threshold: 4
+
+  Counties:
+    Alameda:
+      enabled: true,
+      mortgage_threshold: 8
+    Butte:
+    Contra Costa:
+      enabled: true,
+      mortgage_threshold: 6
+    El Dorado:
+      enabled: true,
+      mortgage_threshold: 8
+    Fresno:
+    Humboldt:
+    Kern:
+    Los Angeles:
+    Madera:
+    Marin:
+    Mendocino:
+    Merced:
+    Monterey:
+    Napa:
+    Nevada:
+    Orange:
+    Riverside:
+    Sacramento:
+    San Bernardino:
+    San Benito:
+    San Diego:
+    San Francisco:
+    San Joaquin:
+    San Luis Obispo:
+    San Mateo:
+    Santa Clara:
+    Santa Cruz:
+    Shasta:
+    Solano:
+    Sonoma:
+    Stanislaus:
+    Sutter:
+    Tulare:
+    Ventura:
+    Yolo:
+
+Florida:
+    enabled: true,
+    mortagage_threshold: 5
