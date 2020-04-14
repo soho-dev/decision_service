@@ -19,7 +19,7 @@ class Rules
   end
 
   def data_present?
-    @reports.present?
+    @reports.any?
   end
 
   def reports_required

@@ -1,6 +1,6 @@
 module ReportService
-  class ReportNotFound < StandardError
-  end
+  class ReportNotFound < StandardError; end
+
   class PropertyDataService
     def self.call(address)
       mock_data = JSON.parse(File.read("#{Rails.root}/lib/report_service/sample_data/property.json"))
