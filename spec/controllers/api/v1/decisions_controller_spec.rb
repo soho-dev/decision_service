@@ -138,7 +138,7 @@ RSpec.describe Api::V1::DecisionsController, type: :controller do
             first_name: "abba",
             last_name: "dabba",
             ssn: "123456789",
-            salary: "10000"
+            income: "10000"
           },
           loan_amt: "20000",
           decision: "eligible",

@@ -35,7 +35,7 @@ class Rules
   end
 
   def run
-    @decision_request.create_decision(
+    @decision_request.decisions.create(
       rule_name: rule_name,
       decision: decision_from_rule
     )
