@@ -6,12 +6,14 @@ class Reports
 
   def fetch
     record = parser_class.parse(call_service)
-    report = report_class.new(record)
-    if report_class.new(record).save
-      report
+    report = report_class.constantize.new(record.merge(other_fields))
+    if report.save
+      return report
     else
-      nil
+      return nil
     end
+  rescue ReportService::ReportNotFound
+    nil
   end
 
   private

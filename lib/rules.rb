@@ -2,16 +2,16 @@ require 'reports'
 require_relative './reports/mortgage.rb'
 
 class Rules
-  attr_accessor :decision_request, :config
+  attr_accessor :decision_request, :config, :reports
 
-  def initialize(decision_request, config, reports)
+  def initialize(decision_request, config = nil, reports = nil)
     @decision_request = decision_request
     @config = config || self.config
-    @reports = reports || self.reports if enabled
+    @reports = reports || self.fetch_reports if enabled
   end
 
   def enabled
-    config[self.rule_name.to_sym][:enabled] rescue false
+    config[rule_name.to_sym][:enabled] rescue false
   end
 
   def config
@@ -26,11 +26,12 @@ class Rules
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 
-  def reports
+  def fetch_reports
     @reports ||= []
     reports_required.each do |report|
       @reports << "Reports::#{report}".constantize.new(decision_request).fetch
     end
+    @reports
   end
 
   def run

@@ -8,6 +8,6 @@ class Api::ApiRestrictController < ActionController::API
   private
 
   def api_token
-    @api_token ||= request.env["API_TOKEN"] || params["API_TOKEN"]
+    @api_token ||= request.env["HTTP_API_TOKEN"] || params["API_TOKEN"]
   end
 end

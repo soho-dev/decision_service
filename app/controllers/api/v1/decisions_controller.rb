@@ -10,7 +10,7 @@ class Api::V1::DecisionsController < Api::ApiRestrictController
   def create
     decision_request = DecisionRequestFilter.new(application_id, address_params, applicant_params)
     render json: { message: "decision request not valid"}, status: 422 unless decision_request.valid?
-    decision = ::Processer.new(decision_request.decision_request).process
+    decision = Processor.new(decision_request.decision_request).process
     render json: decision.serialize
   end
 

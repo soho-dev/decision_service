@@ -13,8 +13,6 @@ class Rules::MortgageRule < Rules
     ["Mortgage"]
   end
 
-  protected
-
   def rule_name
     "mortgage_rule"
   end
@@ -22,14 +20,14 @@ class Rules::MortgageRule < Rules
   private
 
   def mortgage_is_below_threshold?
-    @report.current_mortgage <= applicant_salary*mortgage_threshold
+    @reports[0].pending_mortgage <= applicant_salary*mortgage_threshold
   end
 
   def applicant_salary
-    @decision_request.applicant.try(:salary, 0)
+    @decision_request.applicant.income
   end
 
   def mortgage_threshold
-    config[__method__]
+    config[rule_name.to_sym][__method__]
   end
 end

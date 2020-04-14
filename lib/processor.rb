@@ -1,4 +1,4 @@
-class Processer
+class Processor
   # credit_rule
   RULE_SET= %w(mortgage_rule)
   attr_accessor :decision_request
@@ -22,7 +22,7 @@ class Processer
   end
 
   def rule_class(rule_name)
-    "Rules::#{rule_name.camelize(uppercase_first_letter = true)}".constantize
+    "Rules::#{rule_name.camelize}".constantize
   end
 
   def final_decision
