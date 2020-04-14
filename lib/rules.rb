@@ -10,12 +10,14 @@ class Rules
     @reports = reports || self.fetch_reports if enabled
   end
 
+  attr_reader :decision_request
+
   def enabled
     config[rule_name.to_sym][:enabled] rescue false
   end
 
   def config
-    ::RulesConfig.new(decision_request.address).values
+    ::RulesConfig.new(decision_request.address, rule_name).values
   end
 
   def data_present?
