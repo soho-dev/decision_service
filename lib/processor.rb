@@ -1,6 +1,5 @@
 class Processor
-  # credit_rule
-  RULE_SET= %w(mortgage_rule)
+  RULE_SET= %w(mortgage_rule credit_rule)
   attr_accessor :decision_request
 
   def process

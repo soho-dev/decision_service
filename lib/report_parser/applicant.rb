@@ -1,1 +1,7 @@
-# fetch, parse and store report in db
+class ReportParser::Applicant
+  def self.parse(payload = {})
+    {
+      credit_score: payload["credit_score"]
+    }
+  end
+end

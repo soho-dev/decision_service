@@ -1,3 +1,3 @@
-class MortgageReport < ApplicationRecord
+class CreditReport < ApplicationRecord
   belongs_to :applicant
 end
