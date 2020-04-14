@@ -31,7 +31,7 @@ class RulesConfig
     end
 
     def all_county_details
-      @all_county_details ||= config_details[address[:state]]
+      @all_county_details ||= config_details[address[:state]] || {}
     end
 
     def config_details
