@@ -9,7 +9,7 @@ class DecisionRequest < ApplicationRecord
       address: address.serialize,
       applicant: applicant.serialize,
       final_decision: decision,
-      decision: decisions.each.map(&decision.serialize),
+      decision: decisions.map{ |decision| decision.serialize },
       funding_options: [
         {
           years: 5,

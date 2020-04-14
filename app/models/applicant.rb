@@ -8,7 +8,8 @@ class Applicant < ApplicationRecord
       first_name: first_name,
       last_name: last_name,
       ssn: ssn,
-      income: income
+      income: income,
+      requested_loan_amount: requested_loan_amount
     }
   end
 end

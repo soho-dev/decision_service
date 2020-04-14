@@ -5,7 +5,7 @@ class Decision < ApplicationRecord
     {
       rule_name: rule_name,
       decision: decision,
-      reason: reason
+      message: message
     }
   end
 end
