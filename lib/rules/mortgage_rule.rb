@@ -17,9 +17,6 @@ class Rules::MortgageRule < Rules
     "mortgage_rule"
   end
 
-  def rule_name
-    "mortgage_rule"
-  end
 
   private
 
