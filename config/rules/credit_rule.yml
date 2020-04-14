@@ -5,7 +5,7 @@ California:
   Counties:
     Alameda:
       enabled: true,
-      credit_score_threshold: 8
+      credit_score_threshold: 3
     Butte:
     Contra Costa:
     El Dorado:

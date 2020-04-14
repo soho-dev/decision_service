@@ -26,7 +26,7 @@ class Processor
 
   def final_decision
     return "decline" if decision_request.reload.decisions.any? do |decision|
-      decision.decision == "decline"
+      decision.decision == "decline" || decision.decision == "unavailable"
     end
     "eligible"
   end

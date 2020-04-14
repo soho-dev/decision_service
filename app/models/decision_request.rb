@@ -10,7 +10,13 @@ class DecisionRequest < ApplicationRecord
       applicant: applicant.serialize,
       final_decision: decision,
       decision: decisions.map{ |decision| decision.serialize },
-      funding_options: [
+      funding_options: funding_options
+    }
+  end
+
+  def funding_options
+    if decision == "eligible"
+      [
         {
           years: 5,
           interest_rate: 6,
@@ -20,8 +26,10 @@ class DecisionRequest < ApplicationRecord
           years: 10,
           interest_rate: 6,
           emi: 60
-        }
-      ]
-    }
+          }
+        ]
+    else
+      []
+    end
   end
 end
