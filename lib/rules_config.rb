@@ -7,23 +7,13 @@ class RulesConfig
   attr_reader :address, :rule_name
 
   def values
-    # {
-    #   credit_rule: {
-    #     enabled: true,
-    #     credit_score_threshold: 4
-    #   },
-    #   mortgage_rule: {
-    #     enabled: true,
-    #     mortgage_threshold: 5
-    #   }
-    # }
     county_specific_details || state_config_details
   end
 
   private
 
     def base_path
-      "config/rules/#{rule_name}.yml"
+      "#{Rails.root}/config/rules/#{rule_name}.yml"
     end
 
     def county_specific_details
