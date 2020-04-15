@@ -5,7 +5,8 @@ default: &default
 
 development:
   <<: *default
-  database: decision_service_development
+  database: decision_service_production
+  username: ubuntu
 
 test:
   <<: *default
@@ -14,5 +15,5 @@ test:
 production:
   <<: *default
   database: decision_service_production
-  username: decision_service
+  username: ubuntu
   password: <%= ENV['DECISION_SERVICE_DATABASE_PASSWORD'] %>
