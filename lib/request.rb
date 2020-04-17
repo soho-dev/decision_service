@@ -1,4 +1,4 @@
-class DecisionRequestFilter
+class Request
   attr_accessor :decision_request, :applicant, :address
 
   def valid?
@@ -6,7 +6,7 @@ class DecisionRequestFilter
   end
 
   private
-  
+
   attr_accessor :application_id, :address_params, :applicant_params
 
   def initialize(application_id, address_params, applicant_params)

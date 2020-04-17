@@ -3,7 +3,9 @@ class DecisionRequest < ApplicationRecord
   has_one :applicant
   has_one :address
 
-  def serialize
+  before_save :set_decision
+
+  def as_json(options)
     {
       application_id: application_id,
       address: address.serialize,
@@ -12,6 +14,18 @@ class DecisionRequest < ApplicationRecord
       decision: decisions.map{ |decision| decision.serialize },
       funding_options: funding_options
     }
+  end
+
+  private
+
+  def set_decision
+    self.decision = rule_with_decline_or_unavailable? ? "decline" : "eligible"
+  end
+
+  def rule_with_decline_or_unavailable?
+    decisions.any? do |decision|
+      decision.decision == "decline" || decision.decision == "unavailable"
+    end
   end
 
   def funding_options
