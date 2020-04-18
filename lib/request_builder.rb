@@ -1,4 +1,4 @@
-class Request
+class RequestBuilder
   attr_accessor :decision_request, :applicant, :address
 
   def valid?

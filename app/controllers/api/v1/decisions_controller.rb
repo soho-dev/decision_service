@@ -1,6 +1,6 @@
 class Api::V1::DecisionsController < Api::ApiRestrictController
   def create
-    request = Request.new(application_id, address_params, applicant_params)
+    request = RequestBuilder.new(application_id, address_params, applicant_params)
     render json: { message: "Request not valid"}, status: 422 and return unless request.valid?
     decision = Processor.new(request.decision_request).process
     render json: decision
