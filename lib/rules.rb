@@ -7,12 +7,12 @@ class Rules
   def initialize(decision_request, config = nil, reports = nil)
     @decision_request = decision_request
     @config = config || self.config
-    @reports = reports || (self.fetch_reports if enabled) || []
+    @reports = reports || (self.fetch_reports if enabled?) || []
   end
 
   attr_reader :decision_request
 
-  def enabled
+  def enabled?
     config["enabled"] rescue false
   end
 
@@ -37,9 +37,12 @@ class Rules
   end
 
   def run
+    return unless enabled?
+
     @decision_request.decisions.create(
       rule_name: rule_name,
-      decision: decision_from_rule
+      decision: decision_from_rule,
+      message: message
     )
   end
 
@@ -48,6 +51,10 @@ class Rules
   end
 
   def rule_name
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+
+  def message
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 end

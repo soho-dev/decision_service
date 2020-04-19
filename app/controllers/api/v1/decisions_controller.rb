@@ -1,12 +1,19 @@
 class Api::V1::DecisionsController < Api::ApiRestrictController
+  before_action :build_request!, only: [:create]
+
   def create
-    request = RequestBuilder.new(application_id, address_params, applicant_params)
-    render json: { message: "Request not valid"}, status: 422 and return unless request.valid?
-    decision = Processor.new(request.decision_request).process
+    decision = Processor.new(decision_request).process
     render json: decision
   end
 
   private
+
+  attr_reader :decision_request
+
+  def build_request!
+    @decision_request = RequestBuilder.new(application_id, address_params, applicant_params).decision_request
+    render json: { message: "Request not valid"}, status: 422 and return unless decision_request.valid?
+  end
 
   def application_id
     params.permit(:application_id)

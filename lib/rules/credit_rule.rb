@@ -13,6 +13,10 @@ class Rules::CreditRule < Rules
     "credit_rule"
   end
 
+  def message
+    "The credit score of applicant is checked"
+  end
+
   private
 
   def credit_score_is_below_threshold?

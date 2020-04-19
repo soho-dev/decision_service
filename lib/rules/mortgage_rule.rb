@@ -17,6 +17,10 @@ class Rules::MortgageRule < Rules
     "mortgage_rule"
   end
 
+  def message
+    "The outstanding mortgage loan on the applicants property" \
+    " is checked in relation with his income."
+  end
 
   private
 

@@ -13,6 +13,7 @@ class Reports
       return nil
     end
   rescue ReportService::ReportNotFound
+    # add error logging
     nil
   end
 
