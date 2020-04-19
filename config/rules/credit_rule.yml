@@ -1,10 +1,10 @@
 California:
-  enabled: true,
+  enabled: true
   credit_score_threshold: 4
 
   Counties:
     Alameda:
-      enabled: true,
+      enabled: true
       credit_score_threshold: 3
     Butte:
     Contra Costa:
@@ -42,5 +42,5 @@ California:
     Yolo:
 
 Florida:
-    enabled: true,
+    enabled: true
     credit_score_threshold: 5

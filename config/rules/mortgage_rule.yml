@@ -1,17 +1,17 @@
 California:
-  enabled: true,
+  enabled: false
   mortgage_threshold: 4
 
   Counties:
     Alameda:
-      enabled: true,
-      mortgage_threshold: 8
+      enabled: true
+      mortgage_threshold: 10
     Butte:
     Contra Costa:
-      enabled: true,
+      enabled: true
       mortgage_threshold: 6
     El Dorado:
-      enabled: true,
+      enabled: true
       mortgage_threshold: 8
     Fresno:
     Humboldt:
@@ -46,5 +46,5 @@ California:
     Yolo:
 
 Florida:
-    enabled: true,
+    enabled: true
     mortagage_threshold: 5

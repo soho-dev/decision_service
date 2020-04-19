@@ -1,4 +1,6 @@
 class Rules::CreditRule < Rules
+  private
+
   def decision_from_rule
     return "unavailable" unless data_present?
     return "decline" if credit_score_is_below_threshold?
@@ -16,8 +18,6 @@ class Rules::CreditRule < Rules
   def message
     "The credit score of applicant is checked"
   end
-
-  private
 
   def credit_score_is_below_threshold?
     @reports[0].credit_score <= credit_score_threshold
