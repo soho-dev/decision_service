@@ -4,7 +4,7 @@ require_relative '../reports/mortgage.rb'
 
 class Rules::MortgageRule < Rules
   private
-  
+
   def decision_from_rule
     return "unavailable" unless data_present?
     return "decline" unless mortgage_is_below_threshold?

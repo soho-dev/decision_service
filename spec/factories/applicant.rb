@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :applicant do
     decision_request
-    
+
     first_name "first"
     last_name "last"
     ssn "123456789"
@@ -10,7 +10,7 @@ FactoryGirl.define do
     requested_loan_amount 100000
 
     trait :different_ssn do
-      ssn "999999999"
+      income 9999
     end
   end
 end

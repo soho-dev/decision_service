@@ -21,14 +21,14 @@ class Rules
 
   protected
 
-  attr_reader :decision_request, :config, :reports
+  attr_reader :decision_request, :reports
 
   def enabled?
-    config["enabled"] rescue false
+    @config["enabled"]
   end
 
   def config
-    ::RulesConfig.new(decision_request.address, rule_name).values
+    @config ||= ::RulesConfig.new(decision_request.address, rule_name).values
   end
 
   def data_present?
@@ -52,7 +52,7 @@ class Rules
   end
 
   def fetch_reports
-    @reports ||= []
+    @reports = []
     reports_required.each do |report|
       @reports << "Reports::#{report}".constantize.new(decision_request).fetch
     end

@@ -6,34 +6,57 @@ require 'decision_request'
 
 RSpec.describe Rules::MortgageRule do
   subject {
-    described_class.new(decision_request, nil, nil)
+    described_class.new(decision_request)
   }
 
   let(:decision_request) {
-    instance_double(DecisionRequest, address: "address")
+    create(:decision_request)
   }
 
   describe "#enabled" do
     context "when the rule is enabled from config" do
       let(:rule_config) {
         {
-          credit_rule: {
-            enabled: true,
-            credit_score_threshold: 4
-          },
-          mortgage_rule: {
-            enabled: true,
-            mortgage_threshold: 5
-          }
+          "enabled" =>  true,
+          "mortgage_threshold" => 10
         }
       }
 
-      it "returns true" do
-        allow_any_instance_of(RulesConfig).to receive(:values).and_return(rule_config)
-        # allow_any_instance_of(Reports::Mortgage).to receive(:fetch).and_return("report")
-        expect(subject.enabled).to eq(true)
-        expect(subject.data_present?).to eq(true)
-        # expect(subject.decision_from_rule).to eq("eligible")
+      let(:failing_mortgage_report) {
+        create(:mortgage_report, :failing_report, address: decision_request.address)
+      }
+
+      let(:passing_mortgage_report) {
+        create(:mortgage_report, address: decision_request.address)
+      }
+
+      before(:each) {
+        create(:address, decision_request: decision_request)
+        create(:applicant, decision_request: decision_request)
+      }
+
+      it "returns eligible" do
+        allow_any_instance_of(::RulesConfig).to receive(:values).and_return(rule_config)
+        allow_any_instance_of(Reports::Mortgage).to receive(:fetch).and_return(passing_mortgage_report)
+        expect(subject.send(:enabled?)).to eq(true)
+        expect(subject.send(:data_present?)).to eq(true)
+        expect(subject.send(:decision_from_rule)).to eq("eligible")
+      end
+
+      it "returns data not present" do
+        allow_any_instance_of(::RulesConfig).to receive(:values).and_return(rule_config)
+        allow_any_instance_of(Reports::Mortgage).to receive(:fetch).and_return(nil)
+        expect(subject.send(:enabled?)).to eq(true)
+        expect(subject.send(:data_present?)).to eq(false)
+        expect(subject.send(:decision_from_rule)).to eq("unavailable")
+      end
+
+      it "returns decision of decline when report has pending mortgage" do
+        allow_any_instance_of(::RulesConfig).to receive(:values).and_return(rule_config)
+        allow_any_instance_of(Reports::Mortgage).to receive(:fetch).and_return(failing_mortgage_report)
+        expect(subject.send(:enabled?)).to eq(true)
+        expect(subject.send(:data_present?)).to eq(true)
+        expect(subject.send(:decision_from_rule)).to eq("decline")
       end
     end
   end
