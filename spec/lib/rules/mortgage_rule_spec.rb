@@ -35,7 +35,7 @@ RSpec.describe Rules::MortgageRule do
         create(:applicant, decision_request: decision_request)
       }
 
-      it "returns eligible" do
+      it "returns eligible when pending mortgage is below threshold" do
         allow_any_instance_of(::RulesConfig).to receive(:values).and_return(rule_config)
         allow_any_instance_of(Reports::Mortgage).to receive(:fetch).and_return(passing_mortgage_report)
         expect(subject.send(:enabled?)).to eq(true)
@@ -43,7 +43,7 @@ RSpec.describe Rules::MortgageRule do
         expect(subject.send(:decision_from_rule)).to eq("eligible")
       end
 
-      it "returns data not present" do
+      it "returns unavailable when report is not present" do
         allow_any_instance_of(::RulesConfig).to receive(:values).and_return(rule_config)
         allow_any_instance_of(Reports::Mortgage).to receive(:fetch).and_return(nil)
         expect(subject.send(:enabled?)).to eq(true)
@@ -51,7 +51,7 @@ RSpec.describe Rules::MortgageRule do
         expect(subject.send(:decision_from_rule)).to eq("unavailable")
       end
 
-      it "returns decision of decline when report has pending mortgage" do
+      it "returns decision of decline when pending mortgage is above threshold" do
         allow_any_instance_of(::RulesConfig).to receive(:values).and_return(rule_config)
         allow_any_instance_of(Reports::Mortgage).to receive(:fetch).and_return(failing_mortgage_report)
         expect(subject.send(:enabled?)).to eq(true)
