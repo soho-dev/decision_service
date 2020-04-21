@@ -1,0 +1,64 @@
+Request:
+{
+    "application_id": 123,
+    "first_name": "pratik",
+    "last_name": "raut",
+    "date_of_birth": "what_ever",
+    "ssn": "123456789",
+    "email": "aa@aa.com",
+    "phone": "123456789",
+    "income": 1000,
+    "income_type": "salary",
+    "requested_loan_amount": 20000,
+    "address": {
+        "street": "212 Encounter bay",
+        "unit_number": 123,
+        "city": "test_city",
+        "zip": "321",
+        "state": "California",
+        "county": "Alameda"
+    }
+}
+Response:
+{
+    "application_id": 123,
+    "address": {
+        "street": "212 Encounter bay",
+        "city": "test_city",
+        "zip": "321",
+        "state": "California",
+        "county": "Alameda"
+    },
+    "applicant": {
+        "first_name": "pratik",
+        "last_name": "raut",
+        "ssn": "123456789",
+        "income": 1000.0,
+        "requested_loan_amount": 20000.0
+    },
+    "final_decision": "eligible",
+    "decision": [
+        {
+            "rule_name": "mortgage_rule",
+            "decision": "eligible",
+            "message": "The outstanding mortgage loan on the applicants property is checked in relation with his income."
+        },
+        {
+            "rule_name": "credit_rule",
+            "decision": "eligible",
+            "message": "The credit score of applicant is checked"
+        }
+    ],
+    "funding_options": [
+        {
+            "years": 5,
+            "interest_rate": 6,
+            "emi": 100
+        },
+        {
+            "years": 10,
+            "interest_rate": 6,
+            "emi": 60
+        }
+    ]
+}

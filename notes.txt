@@ -1,0 +1,34 @@
+Show Postman explain request and response
+DataBase and Model:
+#Show the migration and relationship
+
+Routes, => restful routes
+Authentication, Token
+Controller, strong parameters
+
+RequestBuilder =>
+1) checks if the request is valid and creates a decision_request.
+
+Rule =>
+1) We follow DRY principle by having common methods that are required by each of the rules in this class.
+2) Implements common logics for:
+getting address specific configuration, rule specific reports, and persistence of decision for rule.
+
+Let us look at mortgage rule to understand:
+1) You will notice that this class compact and very readable.
+2) By implementing factory methods defined in Rule class we are now able to have clean code.
+3) entry point to the mortgage rule class is decision_from_rule.
+# explain each line with reference to rule class.
+# data_present? show where reports are called but don't show report class
+# mortgage_is_below_threshold? explain report data that is used, applicant salary, config
+# take him to RulesConfig
+# show mortgage.yml with reference to address
+# quick look through report call and how it follows the DRY principle similar to Rules class.
+# Raise Error and rescue error.
+
+
+
+
+ It also follows Factory Method pattern
+  ref: https://medium.com/@dljerome/design-patterns-in-ruby-factory-method-e4e4cd995254
+  Open-Closed Principle: “Software entities should be open for extension, but closed for modification.”
